@@ -23,7 +23,7 @@ variable "USERNAME" {
 }
 
 variable "MYIP" {
-  default = "192.168.0.104/32"
+  default = "0.0.0.0/0"
 }
 
 variable "rmquser" {
