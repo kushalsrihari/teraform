@@ -19,8 +19,8 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
     value     = "false"
   }
   setting {
-    name      = "aws:ec2:vpc"
-    namespace = "Subnets"
+    namespace = "aws:ec2:vpc"
+    name      = "Subnets"
     value     = join(",", [module.vpc.private_subnets[0], module.vpc.private_subnets[1], module.vpc.private_subnets[2]])
   }
   setting {
@@ -59,8 +59,8 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
     value     = "prod"
   }
   setting {
-    namespace = "LOGGING_APPENDER"
-    name      = "aws:elasticbeanstalk:application:environment"
+    name      = "LOGGING_APPENDER"
+    namespace = "aws:elasticbeanstalk:application:environment"
     value     = "GRAYLOG"
   }
   setting {
@@ -70,22 +70,22 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   }
   setting {
     name      = "RollingUpdateEnabled"
-    namespace = "aws:elasticbeanstalk:updatepolicy:rollingupdate"
+    namespace = "aws:autoscaling:updatepolicy:rollingupdate"
     value     = "true"
   }
   setting {
     name      = "RollingUpdateType"
-    namespace = "aws:elasticbeanstalk:updatepolicy:rollingupdate"
+    namespace = "aws:autoscaling:updatepolicy:rollingupdate"
     value     = "Health"
   }
   setting {
     name      = "MaxBatchSize"
-    namespace = "aws:elasticbeanstalk:updatepolicy:rollingupdate"
+    namespace = "aws:autoscaling:updatepolicy:rollingupdate"
     value     = "1"
   }
   setting {
     name      = "CrossZone"
-    namespace = "aws:elb:loadblancer"
+    namespace = "aws:elb:loadbalancer"
     value     = "true"
   }
   setting {
@@ -115,7 +115,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   }
   setting {
     name      = "SecurityGroups"
-    namespace = "aws:elbv2:launchconfiguration"
+    namespace = "aws:elbv2:loadbalancer"
     value     = aws_security_group.vprofile-bean-elb-sg.id
   }
 

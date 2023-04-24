@@ -20,7 +20,7 @@ resource "aws_db_instance" "vprofile-rds" {
   engine                 = "mysql"
   engine_version         = "5.7.33"
   instance_class         = "db.t2.micro"
-  db_name                   = var.dbname
+  db_name                = var.dbname
   username               = var.dbuser
   password               = var.dbpass
   parameter_group_name   = "default.mysql5.7"
@@ -51,4 +51,6 @@ resource "aws_mq_broker" "vprofile_rmq" {
     password = var.rmqpass
     username = var.rmquser
   }
+  security_groups = [aws_security_group.vprofile-backend-sg.id]
+  subnet_ids      = [module.vpc.private_subnets[0]]
 }
