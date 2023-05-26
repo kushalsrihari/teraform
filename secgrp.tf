@@ -64,7 +64,7 @@ resource "aws_security_group" "vprofile-backend-sg" {
 
   egress {
     from_port = 0
-    protocol  = ""
+    protocol  = "-1"
     to_port   = 0
   }
 
